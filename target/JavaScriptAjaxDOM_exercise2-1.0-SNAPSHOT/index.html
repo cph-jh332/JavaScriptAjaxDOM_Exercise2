@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div id="time"></div>
+        <script>
+            var time = document.getElementById("time");
+            var url = "http://localhost:8080/JavaScriptAjaxDOM_exercise2/ServerTime";
+            var conf = {method: "get"};
+            function getTime(){
+                var promise = fetch(url, conf);
+                promise.then(function(response){
+                    return response.json();
+                }).then(function(json){
+                    time.innerHTML = json;
+                    setInterval(getTime(), 1000);
+                })
+            }
+            getTime();
+        </script>
+    </body>
+</html>
